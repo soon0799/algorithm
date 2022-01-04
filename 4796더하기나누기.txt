@@ -1,0 +1,39 @@
+import java.util.Scanner;
+
+public class Main {
+    
+    public static void main(String[] args) {
+    
+    	Scanner s= new Scanner(System.in);
+    	int p;
+    	int l;
+    	int v;
+    	int days;
+    	int tmp;
+    	int cnt=0;
+    	
+    	while(true) {
+    		cnt++;
+    		p=s.nextInt();
+    		l=s.nextInt();
+    		v=s.nextInt();
+    		if(p==0&&l==0&&v==0) {
+    			break;
+    		}
+    		days = (v/l)*p;
+    		if(v%l>=p) {
+    			tmp=p;
+    		}
+    		else {
+    			tmp=v%l;
+    		}
+    		days=days+tmp;
+    		System.out.println("Case "+cnt+": "+days);
+    		
+    	}
+    	
+    	
+    }
+    
+    
+}

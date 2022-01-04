@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+
+public class Main {
+
+	public static Scanner sc= new Scanner(System.in);
+	public static int[] visit;
+	public static int[][] array;
+	public static int n;
+	public static int cnt=0;
+	public static void main(String[] args){
+		
+		n = sc.nextInt();
+		int n1 = sc.nextInt();
+		visit=new int[n+1];
+		array=new int[n+1][n+1];
+		for(int i=0;i<n;i++) {
+			visit[i]=0;
+		}
+		for(int i=0;i<n1;i++) {
+			int com1 = sc.nextInt();
+			int com2 = sc.nextInt();
+			array[com1][com2]=1;			
+			array[com2][com1]=1;			
+		}
+		dfs(1);
+			System.out.println(cnt);
+	}
+	
+	public static void dfs(int i) {
+		visit[i]=1;
+		for(int j = 1  ; j <= n ; j++) {
+			if(array[i][j]==1&&visit[j]==0) {
+				cnt++;
+				dfs(j);
+			}
+		}
+	}
+}
+
+
+
+
+

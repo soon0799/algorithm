@@ -1,0 +1,76 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Main {
+
+	static int[] x = {-1,1,0,0};
+	static int[] y = {0,0,-1,1};
+	static int[][] check;
+	static int[][] map;
+	static int noofisland=0;
+	static int n;
+	static int tmp=0;
+	static ArrayList<Integer> sizeofisland = new ArrayList<Integer>();
+	public static void main(String[] args) {
+
+
+		Scanner s= new Scanner(System.in);
+
+		n= s.nextInt();
+		map = new int[n][n];
+		check= new int[n][n];
+
+		for(int i=0;i<n;i++) {
+			String input = s.next();
+			for(int j=0;j<n;j++) {
+				map[i][j]=input.charAt(j)-'0';
+				check[i][j]=0;
+			}
+		}
+
+		for(int i=0;i<n;i++) {
+			for(int j=0;j<n;j++) {
+				if(map[i][j]==1&&check[i][j]==0) {
+					noofisland++;
+					dfs(i,j);
+					sizeofisland.add(tmp);
+					tmp=0;
+					
+				}
+			}
+		}
+		
+		Collections.sort(sizeofisland);
+		
+		System.out.println(noofisland);
+		for(int i=0;i<sizeofisland.size();i++) {
+			System.out.println(sizeofisland.get(i));
+		}
+
+
+
+	}
+
+
+	public static void dfs(int i,int j) {
+		tmp++;
+		check[i][j]=1;
+		int xx;
+		int yy;
+		for(int k=0;k<4;k++) {
+			xx=i+x[k];
+			yy=j+y[k];
+			if(xx>=0&&yy>=0&&xx<n&&yy<n) {
+				if(map[xx][yy]==1&&check[xx][yy]==0) {
+					dfs(xx,yy);
+				}
+			}
+		}
+
+	}
+
+
+
+}
